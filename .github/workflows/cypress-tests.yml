@@ -22,7 +22,7 @@ jobs:
           curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                -H "Accept: application/vnd.github.v3+json" \
                https://api.github.com/repos/${{ github.repository }}
-               
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -65,3 +65,22 @@ jobs:
         if: contains(github.event.comment.body, '/run-regression')
         run: npm run cypress:run-regression # Replace with your actual regression test command
 
+      - name: Post Test Results
+        if: always()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Read Cypress test results from output (update the path as per your setup)
+            const testResults = fs.existsSync('cypress/results/output.txt')
+              ? fs.readFileSync('cypress/results/output.txt', 'utf8')
+              : 'No test results found.';
+
+            // Post the test results as a comment on the PR
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `📝 Here are the test results:\n\n\`\`\`\n${testResults}\n\`\`\``
+            });
