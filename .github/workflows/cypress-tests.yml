@@ -14,14 +14,18 @@ env:
 
 jobs:
   run-cypress-tests:
+    if: github.event.issue.pull_request != null && (
+          contains(github.event.comment.body, '/run-smoke') ||
+          contains(github.event.comment.body, '/run-regression')
+        )
     runs-on: ubuntu-latest
     
     steps:
-      - name: Check GITHUB_TOKEN Permissions
-        run: |
-          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-               -H "Accept: application/vnd.github.v3+json" \
-               https://api.github.com/repos/${{ github.repository }}
+      # - name: Check GITHUB_TOKEN Permissions
+      #   run: |
+      #     curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+      #          -H "Accept: application/vnd.github.v3+json" \
+      #          https://api.github.com/repos/${{ github.repository }}
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -37,7 +41,7 @@ jobs:
       - name: Notify user
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          # github-token: ${{ secrets.GH_TOKEN }}
           script: |
             const commentBody = context.payload.comment.body;
 
