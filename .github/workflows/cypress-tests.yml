@@ -46,12 +46,19 @@ jobs:
               body: `🚀 I'm running the ${testType} tests now...`
             });
 
+      - name: Run Cypress Smoke Tests
+        if: contains(github.event.comment.body, '/run-smoke')
+        run: npm run cypress:run-smoke # Replace with your actual smoke test command
+
+      - name: Run Cypress Regression Tests
+        if: contains(github.event.comment.body, '/run-regression')
+        run: npm run cypress:run-regression # Replace with your actual regression test command
+
       - name: Post Test Results
         if: always()
         uses: actions/github-script@v6
         with:
           script: |
-            // Access context directly without re-declaring it
             const fs = require('fs');
 
             // Read Cypress test results from output (update the path as per your setup)
