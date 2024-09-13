@@ -46,23 +46,23 @@ jobs:
               body: `🚀 I'm running the ${testType} tests now...`
             });
 
-      - name: Post Test Results
+            - name: Post Test Results
         if: always()
         uses: actions/github-script@v6
         with:
           script: |
+            // Access context directly without re-declaring it
             const fs = require('fs');
 
-            // Read Cypress test results from output (replace with the correct file if needed)
+            // Read Cypress test results from output (update the path as per your setup)
             const testResults = fs.existsSync('cypress/results/output.txt')
               ? fs.readFileSync('cypress/results/output.txt', 'utf8')
               : 'No test results found.';
 
-            // Post the test results as a comment
+            // Post the test results as a comment on the PR
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
               body: `📝 Here are the test results:\n\n\`\`\`\n${testResults}\n\`\`\``
             });
-
