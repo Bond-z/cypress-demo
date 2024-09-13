@@ -19,6 +19,9 @@ npm init -y (to gennerate package.json)
 npm install --save-dev cypress (install cypress in the project)
 npx cypress open  >> the windows will open up with examples
 
+# Install Cypress Grep Plugin
+npm install cypress-grep --save-dev
+
 
 # Execution
 npx cypress run --env grepTags=@status
