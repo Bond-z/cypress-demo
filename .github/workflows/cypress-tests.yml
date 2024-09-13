@@ -46,7 +46,7 @@ jobs:
               body: `🚀 I'm running the ${testType} tests now...`
             });
 
-            - name: Post Test Results
+      - name: Post Test Results
         if: always()
         uses: actions/github-script@v6
         with:
