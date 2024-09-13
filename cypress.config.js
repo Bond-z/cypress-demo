@@ -16,7 +16,6 @@ module.exports = defineConfig({
       username: process.env.USERNAME || 'default-username',
       password: process.env.PASSWORD || 'default-password'
     },
-    
     baseUrl: 'https://example.cypress.io',
     setupNodeEvents(on, config) {
     //   // implement node event listeners here

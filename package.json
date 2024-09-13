@@ -4,7 +4,9 @@
   "description": "*** Virtual env\r 'pip install virtualenv'\r run: 'virtualenv env'\r activate: 'env\\scripts\\activate'\r deactivate: 'env\\scripts\\deactivate'",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:run-smoke": "cypress run --spec 'cypress/e2e/spec.cy.js' --env grepTags=@smoke",
+    "cypress:run-regression": "cypress run --spec 'cypress/e2e/spec.cy.js' --env grepTags=@test"
   },
   "keywords": [],
   "author": "",

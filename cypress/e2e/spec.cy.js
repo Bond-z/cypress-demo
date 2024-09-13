@@ -17,7 +17,7 @@ describe('Store url in env variable', () => {
     cy.get('.action-email').should('have.value', 'abc@email.com')
   })
 
-  it('Verify text is shown correctly', { tags: ['@test', '@smoke']}, ()=> {
+  it('Verify text is shown correctly', { tags: ['@smoke']}, ()=> {
     cy.get('.dropdown-toggle').click()
     cy.get('.dropdown-menu').findByText('Connectors').click()
     cy.get('.container').invoke('text').then((text)=>{
