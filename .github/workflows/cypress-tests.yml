@@ -30,7 +30,7 @@ jobs:
       - name: Notify user
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GH_PAT }}
+          github-token: ${{ secrets.GH_TOKEN }}
           script: |
             const commentBody = context.payload.comment.body;
 
