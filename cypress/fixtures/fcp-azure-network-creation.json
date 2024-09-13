@@ -1,0 +1,18 @@
+
+{
+    "subscriptionId": "6e5fd23f-8321-447d-adcc-4da4d43d5168",
+    "networkData": {
+        "crpAksCluster": true,
+        "resourceGroupName": "delafcp01c",
+        "cloudRegion": "brazilsouth",
+        "interactionSubnet": {
+            "sizes": [28]
+        },
+        "enterpriseSubnet": {
+            "sizes": [28]
+        },
+        "managementSubnet": {
+            "sizes": [28]
+        }
+    }
+}

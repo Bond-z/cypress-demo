@@ -1,0 +1,7 @@
+{
+    "dry-run": false,
+    "region": "us-east-1",
+    "virtual-network-name": "delwfcp07c",
+    "request-id": "111333",
+    "virtual-network-id": "vpc-xxx"
+}

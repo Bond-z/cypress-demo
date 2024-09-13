@@ -1,0 +1,64 @@
+
+cypress-grep: filtering using tag(s) "@get_account"
+Warning: We failed to trash the existing run results.
+
+This error will not affect or change the exit code.
+
+Error: Command failed: C:\Users\pruek\AppData\Local\Cypress\Cache\13.13.3\Cypress\resources\app\node_modules\trash\lib\win-trash.exe C:\Users\pruek\Documents\cypress-demo\cypress\screenshots\2-advanced-examples
+
+    at ChildProcess.exithandler (node:child_process:419:12)
+    at ChildProcess.emit (node:events:514:28)
+    at maybeClose (node:internal/child_process:1091:16)
+    at Process.onexit (node:internal/child_process:302:5)
+
+====================================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        13.13.3                                                                        │
+  │ Browser:        Electron 118 (headless)                                                        │
+  │ Node Version:   v20.16.0 (C:\Program Files\nodejs\node.exe)                                    │
+  │ Specs:          1 found (fcp-azure.cy.js)                                                      │
+  │ Searched:       C:\Users\pruek\Documents\cypress-demo\cypress\e2e\fcp-azure.cy.js              │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  fcp-azure.cy.js                                                                 (1 of 1)
+
+
+  Create account and verify status
+    √ Get account with prefix (10575ms)
+
+
+  1 passing (11s)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      1                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     10 seconds                                                                       │
+  │ Spec Ran:     fcp-azure.cy.js                                                                  │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+====================================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✔  fcp-azure.cy.js                          00:10        1        1        -        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✔  All specs passed!                        00:10        1        1        -        -        -  
+

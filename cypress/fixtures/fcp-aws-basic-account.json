@@ -1,0 +1,13 @@
+{
+    "accountData": {
+        "integrationType": "dedicated",
+        "siNumber": "SI1234567",
+        "accountTag": "delwfcpnp01",
+        "accountOwners": ["extern.lewczuk_grzegorz@allianz.de","nathakrit.punyaworasin@allianz.com"],
+        "customerEnvironment": "prod",
+        "debtorNumber": "2000010446",
+        "oeName": "Allianz Technology",
+        "profileName": "Cloud Accounts",
+        "billingGeo": "na"
+    }
+}

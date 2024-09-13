@@ -1,0 +1,30 @@
+{
+    "accountId": "851174105016",
+    "networkData": {
+        "cloudNetworkName": "delwfcp06a",
+        "cloudRegion": "us-east-1",
+        "numberAvailabilityZones": 2,
+        "enterpriseSubnet": {
+            "sizes": [
+                28,
+                28
+            ]
+        },
+        "managementSubnet": {
+            "sizes": [
+                28,
+                28
+            ]
+        },
+        "interactionSubnet": {
+            "sizes": [
+                28,
+                28
+            ]
+        },
+        "eksSubnets": {
+            "enabled": true,
+            "transitional": true
+        }
+    }
+}

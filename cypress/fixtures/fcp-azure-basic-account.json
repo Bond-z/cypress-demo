@@ -1,0 +1,15 @@
+{
+    "accountData": {
+        "siNumber": "SI2896032",
+        "accountTag": "delafcp2",
+        "accountOwners": [
+            "nathakrit.punyaworasin@allianz.com",
+            "fake@allianz.de"
+        ],
+        "customerEnvironment": "prod",
+        "debtorNumber": "2000010446",
+        "oeName": "Allianz Technology",
+        "profileName": "Cloud Accounts",
+        "cloudRegion": "germanywestcentral"
+    }
+}
