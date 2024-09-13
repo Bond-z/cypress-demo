@@ -4,6 +4,10 @@ on:
   issue_comment:
     types: [created]
 
+permissions:
+  pull-requests: write
+  issues: write
+
 jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
@@ -22,6 +26,7 @@ jobs:
       - name: Notify user
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GH_PAT }}
           script: |
             const commentBody = context.payload.comment.body;
 
