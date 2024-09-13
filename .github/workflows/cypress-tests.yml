@@ -11,10 +11,10 @@ permissions:
 
 jobs:
   run-cypress-tests:
-    if: github.event.issue.pull_request != null && (
-          contains(github.event.comment.body, '/run-smoke') ||
-          contains(github.event.comment.body, '/run-regression')
-        )
+    # if: github.event.issue.pull_request != null && (
+    #       contains(github.event.comment.body, '/run-smoke') ||
+    #       contains(github.event.comment.body, '/run-regression')
+    #     )
     runs-on: ubuntu-latest
     
     steps:
