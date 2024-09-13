@@ -6,12 +6,7 @@ on:
 
 jobs:
   run-cypress-tests:
-    if: github.event.issue.pull_request != null && (
-          contains(github.event.comment.body, '/run-smoke') ||
-          contains(github.event.comment.body, '/run-regression')
-        )
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,23 +17,14 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # This will install cypress-grep along with other dependencies
 
       - name: Notify user
         uses: actions/github-script@v6
         with:
           script: |
             const commentBody = context.payload.comment.body;
-
-            // Determine which test is being run
-            let testType = '';
-            if (commentBody.includes('/run-smoke')) {
-              testType = 'smoke';
-            } else if (commentBody.includes('/run-regression')) {
-              testType = 'regression';
-            }
-
-            // Post a comment notifying the user
+            let testType = commentBody.includes('/run-smoke') ? 'smoke' : 'regression';
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -48,28 +34,9 @@ jobs:
 
       - name: Run Cypress Smoke Tests
         if: contains(github.event.comment.body, '/run-smoke')
-        run: npm run cypress:run-smoke # Replace with your actual smoke test command
+        run: npm run cypress:run-smoke # Runs tests tagged with @smoke
 
       - name: Run Cypress Regression Tests
         if: contains(github.event.comment.body, '/run-regression')
-        run: npm run cypress:run-regression # Replace with your actual regression test command
+        run: npm run cypress:run-regression # Runs tests tagged with @regression
 
-      - name: Post Test Results
-        if: always()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-
-            // Read Cypress test results from output (update the path as per your setup)
-            const testResults = fs.existsSync('cypress/results/output.txt')
-              ? fs.readFileSync('cypress/results/output.txt', 'utf8')
-              : 'No test results found.';
-
-            // Post the test results as a comment on the PR
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: `📝 Here are the test results:\n\n\`\`\`\n${testResults}\n\`\`\``
-            });
