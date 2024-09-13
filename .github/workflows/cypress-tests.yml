@@ -5,13 +5,13 @@ on:
     types: [created]
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
   issues: write
 
 env:
-  REPO: cypress-demo
-  
+  repo: cypress-demo
+
 jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
