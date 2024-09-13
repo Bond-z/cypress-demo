@@ -22,6 +22,7 @@ npx cypress open  >> the windows will open up with examples
 # Install Cypress Grep Plugin
 npm install cypress-grep --save-dev
 *** pls check the compatible version between cypress and grep
+update readme
 
 
 # Execution
