@@ -17,14 +17,23 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install  # This will install cypress-grep along with other dependencies
+        run: npm install
 
       - name: Notify user
         uses: actions/github-script@v6
         with:
           script: |
             const commentBody = context.payload.comment.body;
-            let testType = commentBody.includes('/run-smoke') ? 'smoke' : 'regression';
+
+            // Determine which test is being run
+            let testType = '';
+            if (commentBody.includes('/run-smoke')) {
+              testType = 'smoke';
+            } else if (commentBody.includes('/run-regression')) {
+              testType = 'regression';
+            }
+
+            // Post a comment notifying the user
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -34,9 +43,9 @@ jobs:
 
       - name: Run Cypress Smoke Tests
         if: contains(github.event.comment.body, '/run-smoke')
-        run: npm run cypress:run-smoke # Runs tests tagged with @smoke
+        run: npm run cypress:run-smoke # Replace with your actual smoke test command
 
       - name: Run Cypress Regression Tests
         if: contains(github.event.comment.body, '/run-regression')
-        run: npm run cypress:run-regression # Runs tests tagged with @regression
+        run: npm run cypress:run-regression # Replace with your actual regression test command
 
