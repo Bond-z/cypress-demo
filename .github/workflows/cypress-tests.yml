@@ -5,13 +5,25 @@ on:
     types: [created]
 
 permissions:
+  contents: read
   pull-requests: write
   issues: write
 
 jobs:
   run-cypress-tests:
+    if: github.event.issue.pull_request != null && (
+          contains(github.event.comment.body, '/run-smoke') ||
+          contains(github.event.comment.body, '/run-regression')
+        )
     runs-on: ubuntu-latest
+    
     steps:
+      # - name: Check GITHUB_TOKEN Permissions
+      #   run: |
+      #     curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+      #          -H "Accept: application/vnd.github.v3+json" \
+      #          https://api.github.com/repos/${{ github.repository }}
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -26,7 +38,7 @@ jobs:
       - name: Notify user
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GH_PAT }}
+          github-token: ${{ secrets.GH_TOKEN }}
           script: |
             const commentBody = context.payload.comment.body;
 
@@ -54,3 +66,22 @@ jobs:
         if: contains(github.event.comment.body, '/run-regression')
         run: npm run cypress:run-regression # Replace with your actual regression test command
 
+      # - name: Post Test Results
+      #   if: always()
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       const fs = require('fs');
+
+      #       // Read Cypress test results from output (update the path as per your setup)
+      #       const testResults = fs.existsSync('cypress/results/output.txt')
+      #         ? fs.readFileSync('cypress/results/output.txt', 'utf8')
+      #         : 'No test results found.';
+
+      #       // Post the test results as a comment on the PR
+      #       await github.rest.issues.createComment({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         issue_number: context.issue.number,
+      #         body: `📝 Here are the test results:\n\n\`\`\`\n${testResults}\n\`\`\``
+      #       });
