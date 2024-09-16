@@ -25,8 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress Smoke Tests
-        run: npm run cy:smoke
+      - name: Cypress run
+        uses: cypress-io/github-action@V6
+        with: 
+          build: npm run build
+          start: npm start
+
+      # - name: Run Cypress Smoke Tests
+      #   run: npm run cy:smoke
       #   env:
       #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # Use this if you're recording results to the Cypress dashboard
 

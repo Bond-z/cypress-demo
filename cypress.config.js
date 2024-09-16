@@ -15,9 +15,7 @@ module.exports = defineConfig({
     // },
     baseUrl: 'https://example.cypress.io',
     setupNodeEvents(on, config) {
-    //   // implement node event listeners here
-    //   require('@cypress/grep/src/plugin')(config);
-    //   return config;
+
       cypressGrep(on, config);    // Add this line to set up cypress-grep
       return config;
     },
