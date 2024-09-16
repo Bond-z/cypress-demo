@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:smoke": "cypress run --spec 'cypress/e2e/spec.cy.js' --env TAGS=@smoke",
-    "cypress:regression": "cypress run --spec 'cypress/e2e/spec.cy.js' --env TAGS=@test"
+    "cy:smoke": "cypress run --spec 'cypress/e2e/spec.cy.js' --env TAGS=@smoke",
+    "cy:regression": "cypress run --spec 'cypress/e2e/spec.cy.js' --env TAGS=@test",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "",
