@@ -1,10 +1,8 @@
 name: Cypress CI/CD
 
 # Trigger workflow on Pull Requests
-on:
-  pull_request:
-    branches:
-      - '*'
+on: [push]
+
 
 jobs:
   cypress-smoke:
@@ -12,37 +10,52 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - name: Cypress run
+        uses: cypress-io/github-action@V2
+        with: 
+          build: npm run build
+          start: npm start
+          run: npm run cy:smoke
 
-      - name: Install dependencies
-        run: npm ci
 
-      - name: Run Cypress Smoke Tests
-        run: npm run cy:smoke
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # Use this if you're recording results to the Cypress dashboard
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '18'
+
+      # - name: Install dependencies
+      #   run: npm ci
+
+      # - name: Run Cypress Smoke Tests
+      #   run: npm run cy:smoke
+      #   env:
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # Use this if you're recording results to the Cypress dashboard
 
   cypress-regression:
     name: Run Regression Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - name: Cypress run
+        uses: cypress-io/github-action@V2
+        with: 
+          build: npm run build
+          start: npm start
+          run: npm run cy:regression
 
-      - name: Install dependencies
-        run: npm ci
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '18'
 
-      - name: Run Cypress Regression Tests
-        run: npm run cy:regression
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # Use this if you're recording results to the Cypress dashboard
+      # - name: Install dependencies
+      #   run: npm ci
+
+      # - name: Run Cypress Regression Tests
+      #   run: npm run cy:regression
+      #   env:
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # Use this if you're recording results to the Cypress dashboard
