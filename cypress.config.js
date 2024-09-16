@@ -1,6 +1,5 @@
-const cypress = require("cypress");
-const { defineConfig } = require("cypress");
-
+// const cypress = require("cypress");
+const { defineConfig } = require('cypress');
 const cypressGrep = require('cypress-grep/src/plugin');
 
 // @type {Cypress.PluginConfig}
@@ -21,7 +20,7 @@ module.exports = defineConfig({
     //   return config;
       cypressGrep(on, config);    // Add this line to set up cypress-grep
       return config;
-    }
+    },
   },
   env: {
     grepFilterSpecs: true,
