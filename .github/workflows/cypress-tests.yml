@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          path: build
+          path: Bond-z/cypress-demo
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -24,6 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        path: ../
 
       # - name: Cypress run
       #   uses: cypress-io/github-action@v6
