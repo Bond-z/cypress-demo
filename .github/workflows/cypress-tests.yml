@@ -8,6 +8,9 @@ jobs:
   cypress-smoke:
     name: Run Smoke Tests
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         # run: npm install
-        # working-directory: ../
+        working-directory: ../
         run: |
           npm install
           npm run build --if-present
