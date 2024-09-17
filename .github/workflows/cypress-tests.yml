@@ -17,10 +17,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
+          settings-path: .npmrc
           node-version: '18'
       
-      - name: List directory contents for debugging
-        run: ls -R
+      # - name: List directory contents for debugging
+      #   run: ls -R
+      - uses: actions/npm-auth@v1
+        with:
+          registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
         run: npm install
