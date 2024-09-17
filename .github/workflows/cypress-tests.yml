@@ -17,18 +17,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          settings-path: .npmrc
-          node-version: '18'
+          node-version: '20'
       
       # - name: List directory contents for debugging
       #   run: ls -R
-      - uses: actions/npm-auth@v1
-        with:
-          registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
-        run: npm install
+        # run: npm install
         working-directory: ../
+        run: |
+          npm install
+          npm run build --if-present
 
       # - name: Cypress run
       #   uses: cypress-io/github-action@v6
